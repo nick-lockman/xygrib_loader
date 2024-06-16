@@ -32,18 +32,10 @@ while [ ${load_status} -ne 0 -a ${attempt} -lt ${MAX_ATTEMPTS} ] ; do
                 -H 'Accept-Language: ru-RU,en,*' \
                 -H 'Connection: Keep-Alive'`
 
-                echo ${xygrib_load_response}
-                echo ${load_status}
-                echo ${attempt}
-        if jq 'xygrib_load_response.status == "true"' ; then #&& jq 'xygrib_load_response | . has('message') and lenght(.message) != 0' ] ; then
-                echo "TRUE"
-                echo ${xygrib_load_response}
+        if jq 'xygrib_load_response.status == "true"' ; then
                 load_status=0
         else
                 $(( attempt++ ))
-                echo "FALSE"
-                echo ${attempt}
-
         fi
 done
 
