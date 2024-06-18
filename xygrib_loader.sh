@@ -6,7 +6,7 @@ CURL=/usr/bin/curl
 DATE=/usr/bin/date       
 TODAY=`${DATE} +%Y-%m-%d`
 SCRIPT_NAME=`basename "$0"`
-CONF_PATH=/home/a/scripts/${SCRIPT_NAME%.*}.conf
+CONF_PATH=/usr/local/scripts/${SCRIPT_NAME%.*}.conf
 
 if test -f ${CONF_PATH} ; then
   . ${CONF_PATH} ; else
@@ -19,8 +19,6 @@ xygrib_status_server_response=`${CURL} -X GET -G "${XYGRIB_STATUS_URL}" \
         -H 'Accept-Language: ru-RU,en,*' \
         -H 'Connection: Keep-Alive' \
         | jq` 
-
-echo ${xygrib_status_server_response}
 
 attempt=0
 load_status=1
